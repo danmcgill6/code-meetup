@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-export default class MapContainer extends Component {
+export default class Map extends Component {
   constructor(props){
     super(props)
     this.state = {campuses:[]}
@@ -10,36 +10,9 @@ export default class MapContainer extends Component {
 
   componentDidUpdate() {
     this.loadMap(); // call loadMap function to load the google map
-    this.setState({campuses:this.props.campuses})
+
   }
  
-  // loadMarkers(map){
-  //   for (let i = 0; i < vals.length; i++) {
-  //     let marker = new google.maps.Marker({
-  //       position: {lat:parseFloat(vals[i].coords.lat), lng:parseFloat(vals[i].coords.lng)},
-  //       map: map,
-  //       description: vals[i].description,
-  //       address: vals[i].address,
-  //       createdBy:vals[i].createdBy,
-  //       time:vals[i].time,
-  //       date:vals[i].date,
-
-  //     });
-  //     marker.addListener('click', function() {
-  //       let location = document.getElementById('location')
-  //       location.innerHTML = marker.address
-  //       let time = document.getElementById('time')
-  //       time.innerHTML = marker.time
-  //       let createdBy = document.getElementById('createdBy')
-  //       createdBy.innerHTML = marker.createdBy
-  //       let date = document.getElementById('date')
-  //       date.innerHTML = marker.date
-  //       let description = document.getElementById('description')
-  //       description.innerHTML = marker.description
-  //      });
-       
-  //    }
-  // }
 
   loadMap() {
     if (this.props && this.props.google) { // checks to make sure that props have been passed
@@ -60,7 +33,7 @@ export default class MapContainer extends Component {
 
       this.map = new maps.Map(node, mapConfig); // creates a new Google map on the specified node (ref='map') with the specified configuration set above.
 
-      for (let i = 0; i < this.state.meetups.length; i++) {
+      for (let i = 0; i < this.props.meetups.length; i++) {
             let marker = new google.maps.Marker({
               position: {lat:parseFloat(this.props.meetups[i].coords.lat), lng:parseFloat(this.props.meetups[i].coords.lng)},
               map: this.map,
@@ -91,7 +64,7 @@ export default class MapContainer extends Component {
 
   render() {
     const style = { // MUST specify dimensions of the Google map or it will not work. Also works best when style is specified inside the render function and created as an object
-      height: '500px;' // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
+      height: '500px' // 75vh similarly will take up roughly 75% of the height of the screen. px also works.
     }
 
     return ( // in our return function you must return a div with ref='map' and style.

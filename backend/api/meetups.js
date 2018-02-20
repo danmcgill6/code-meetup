@@ -5,7 +5,7 @@ const Promise = require('bluebird')
 const googleMapsClient = require('@google/maps').createClient({
   key: 'AIzaSyCvaIfWd-OuN9oFNCRTuUTbInrnllrw4ao'
 })
-
+let  promisifiedGeocode = Promise.promisify(googleMapsClient.geocode)
 router.get('/', (req, res, next) =>{
     meetup.findAll()
     .then((results)=>{
@@ -36,6 +36,7 @@ router.get('/', (req, res, next) =>{
 
 
     router.post('/',(req,res) => {
+      console.log(req.body)
         promisifiedGeocode({address: req.body.street + ' ' + req.body.city + ' ' + req.body.state})
         .then((coords)=>{
           console.log(coords.json.results[0].geometry)

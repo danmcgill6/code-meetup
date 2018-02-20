@@ -19,6 +19,11 @@ app.use(express.static(path.join(__dirname, '..', 'node_modules')));
 
 app.use('/api', require('./api'));
 
+app.use('*', (req, res, next) =>
+    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+);
+
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   var err = new Error('Not Found');
@@ -27,9 +32,6 @@ app.use((req, res, next) => {
 });
 
 
-app.use('*', (req, res, next) =>
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-);
 
 
 // error handler

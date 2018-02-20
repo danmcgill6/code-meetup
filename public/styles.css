@@ -1,6 +1,6 @@
 
 .container{
-    margin-top: 25px;
+  
     width: 90%;
 }
 
@@ -11,18 +11,29 @@ body{
 .map{
     height: 500px;
     border-radius: 10px;
+    margin-top: 50px;
 }
 
 nav{
     background-color: black;
     border-bottom-right-radius: 10px;
-    
+    border-bottom-left-radius: 10px;
+   
+}
+
+
+.add-meetup{
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 30px;
 }
 
 sidebar {
     position: fixed;
     left: 0;
     top: 64px;
+    margin-top: 30px;
+
     padding: 0 !important;
     box-shadow:   3px 5px 6px black;
     border-top-right-radius: 10px;
